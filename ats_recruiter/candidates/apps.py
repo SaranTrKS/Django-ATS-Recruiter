@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class AtsRecAppConfig(AppConfig):
+class CandidatesConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "ats_rec_app"
+    name = "candidates"
