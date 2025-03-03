@@ -75,6 +75,20 @@ def search_candidates(request):
 
     print(candidates)
 
-    candidates = candidates.order_by('-name')
+    relevancy_cases = []
+    for word in search_words:
+        relevancy_cases.append(
+            Case(
+                When(name__icontains=word, then=Value(1)),
+                default=Value(0),
+                output_field=IntegerField()
+            )
+        )
+    
+    candidates = candidates.annotate(
+        relevancy=sum(relevancy_cases)
+    )
+    
+    candidates = candidates.order_by('-relevancy', 'name')
     serializer = CandidateSerializer(candidates, many=True)
     return Response(serializer.data)

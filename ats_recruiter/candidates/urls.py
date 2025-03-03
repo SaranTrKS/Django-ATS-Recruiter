@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('candidates/', views.candidate_list, name='candidate-list'),
-    path('candidates/search/', views.search_candidates, name='candidate-search'),  # Search must come before detail URL
+    path('candidates/search/', views.search_candidates, name='candidate-search'),
     path('candidates/<int:pk>/', views.candidate_detail, name='candidate-detail'),
 ]
 
